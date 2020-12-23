@@ -899,6 +899,9 @@ var MaterialTable = /*#__PURE__*/ (function (_React$Component) {
 
     var renderState = _this.dataManager.getRenderState();
 
+    var _page = calculatedProps.options.initialPage || 0;
+
+    var _pageSize = calculatedProps.options.pageSize;
     _this.state = (0, _objectSpread2.default)(
       {
         data: [],
@@ -922,10 +925,10 @@ var MaterialTable = /*#__PURE__*/ (function (_React$Component) {
             return a.tableData.id === renderState.orderBy;
           }),
           orderDirection: renderState.orderDirection,
-          page: calculatedProps.options.initialPage || 0,
-          pageSize: calculatedProps.options.pageSize,
+          page: _page,
+          pageSize: _pageSize,
           search: renderState.searchText,
-          totalCount: 0,
+          totalCount: (_page + 1) * _pageSize,
         },
         showAddRow: false,
         bulkEditOpen: false,

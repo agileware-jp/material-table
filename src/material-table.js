@@ -25,6 +25,8 @@ export default class MaterialTable extends React.Component {
     this.setDataManagerFields(calculatedProps, true);
     const renderState = this.dataManager.getRenderState();
 
+    const page = calculatedProps.options.initialPage || 0;
+    const pageSize = calculatedProps.options.pageSize;
     this.state = {
       data: [],
       errorState: undefined,
@@ -41,11 +43,11 @@ export default class MaterialTable extends React.Component {
           (a) => a.tableData.id === renderState.orderBy
         ),
         orderDirection: renderState.orderDirection,
-        page: calculatedProps.options.initialPage || 0,
-        pageSize: calculatedProps.options.pageSize,
+        page,
+        pageSize,
         search: renderState.searchText,
 
-        totalCount: 0,
+        totalCount: (page + 1) * pageSize,
       },
       showAddRow: false,
       bulkEditOpen: false,
