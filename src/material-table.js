@@ -41,7 +41,7 @@ export default class MaterialTable extends React.Component {
           (a) => a.tableData.id === renderState.orderBy
         ),
         orderDirection: renderState.orderDirection,
-        page: 0,
+        page: calculatedProps.options.initialPage || 0,
         pageSize: calculatedProps.options.pageSize,
         search: renderState.searchText,
 
