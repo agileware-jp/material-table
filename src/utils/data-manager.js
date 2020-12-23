@@ -22,6 +22,7 @@ export default class DataManager {
   defaultExpanded = false;
   bulkEditOpen = false;
   bulkEditChangedRows = {};
+  isRemote = false;
 
   data = [];
   columns = [];
@@ -1028,12 +1029,16 @@ export default class DataManager {
     this.pagedData = [...this.sortedData];
 
     if (this.paging) {
-      const startIndex = this.currentPage * this.pageSize;
+      const startIndex = this.isRemote ? 0 : this.currentPage * this.pageSize;
       const endIndex = startIndex + this.pageSize;
 
       this.pagedData = this.pagedData.slice(startIndex, endIndex);
     }
 
     this.paged = true;
+  }
+
+  setRemote() {
+    this.isRemote = true;
   }
 }

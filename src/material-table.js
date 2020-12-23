@@ -89,6 +89,7 @@ export default class MaterialTable extends React.Component {
     this.dataManager.changeRowEditing();
 
     if (this.isRemoteData(props)) {
+      this.dataManager.setRemote();
       this.dataManager.changeApplySearch(false);
       this.dataManager.changeApplyFilters(false);
       this.dataManager.changeApplySort(false);

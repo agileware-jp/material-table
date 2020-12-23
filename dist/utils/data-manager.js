@@ -56,6 +56,7 @@ var DataManager = /*#__PURE__*/ (function () {
     (0, _defineProperty2.default)(this, "defaultExpanded", false);
     (0, _defineProperty2.default)(this, "bulkEditOpen", false);
     (0, _defineProperty2.default)(this, "bulkEditChangedRows", {});
+    (0, _defineProperty2.default)(this, "isRemote", false);
     (0, _defineProperty2.default)(this, "data", []);
     (0, _defineProperty2.default)(this, "columns", []);
     (0, _defineProperty2.default)(this, "filteredData", []);
@@ -1234,12 +1235,18 @@ var DataManager = /*#__PURE__*/ (function () {
         this.pagedData = (0, _toConsumableArray2.default)(this.sortedData);
 
         if (this.paging) {
-          var startIndex = this.currentPage * this.pageSize;
+          var startIndex = this.isRemote ? 0 : this.currentPage * this.pageSize;
           var endIndex = startIndex + this.pageSize;
           this.pagedData = this.pagedData.slice(startIndex, endIndex);
         }
 
         this.paged = true;
+      },
+    },
+    {
+      key: "setRemote",
+      value: function setRemote() {
+        this.isRemote = true;
       },
     },
   ]);
